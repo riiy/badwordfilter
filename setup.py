@@ -35,9 +35,6 @@ setup(
     ],
     description="敏感词过滤器, bad word filter",
     entry_points={
-        'console_scripts': [
-            'badwordfilter=badwordfilter.cli:main',
-        ],
     },
     install_requires=requirements,
     license="MIT license",
@@ -50,6 +47,6 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/riiy/badwordfilter',
-    version='0.1.0',
+    version='0.1.2',
     zip_safe=False,
 )

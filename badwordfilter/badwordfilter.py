@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import re
 import os
+import re
+from os.path import isfile
 
 import inflection
-from django.conf import settings
+
 
 class BadWordFilter:
     def __init__(self, **kwargs):
@@ -14,6 +15,10 @@ class BadWordFilter:
 
         # Words to be used in conjunction with _censor_list
         self._extra_censor_list = kwargs.get('extra_censor_list', [])
+
+        # custom file
+
+        self._custom_censor_file = kwargs.get('custom_censor_file', None)
 
         # What to be censored -- should not be modified by user
         self._censor_list = []
@@ -31,6 +36,9 @@ class BadWordFilter:
         """ Loads the list of bad words from file. """
         with open(self._words_file, 'r') as f:
             self._censor_list = [line.strip() for line in f.readlines()]
+        if self._custom_censor_file and isfile(self._custom_censor_file):
+            with open(self._custom_censor_file, 'r') as f:
+                self._custom_censor_list += [line.strip().lower() for line in f.readlines()]
 
     def define_words(self, word_list):
         """ Define a custom list of bad words. """

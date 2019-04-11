@@ -20,13 +20,24 @@ Python Boilerplate contains all the boilerplate you need to create a Python pack
 
 
 * Free software: MIT license
-* Documentation: https://badwordfilter.readthedocs.io.
 
+Installation
+------------
+::
+        pip install badwordfilter
 
-Features
---------
+Usage
+-----
 
-* TODO
+FILE_PATH must be plain text file, contains bad word, a word a line.
+
+::
+        from badwordfilter.badwordfilter import BadWordFilter
+
+        bf=BadWordFilter(custom_censor_file={FILE_PATH}))
+
+        bf.is_bad('fuck')
+
 
 Credits
 -------
